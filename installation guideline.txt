@@ -1,0 +1,67 @@
+This guide focuses on setting up your Kali Linux environment to run the Python reconnaissance tool, assuming you have a basic Kali installation.
+
+Open a Terminal:
+
+Click on the terminal icon in your Kali desktop environment.
+Update Your System (Good Practice):
+
+Before installing new tools, ensure your Kali system is up to date.
+Bash
+
+sudo apt update
+sudo apt upgrade -y
+Install Python3 and pip (if not already installed):
+
+Kali usually comes with Python 3 and pip (Python's package installer) pre-installed. You can verify with:
+Bash
+
+python3 --version
+pip3 --version
+If pip3 is missing, install it:
+Bash
+
+sudo apt install python3-pip -y
+Install Nmap (Crucial for port_scan.py):
+
+Your port_scan.py now uses the python-nmap library, which requires Nmap itself to be installed on your system. Kali usually has Nmap pre-installed, but confirm:
+Bash
+
+nmap --version
+If Nmap is missing:
+Bash
+
+sudo apt install nmap -y
+Extract Your Recon Tool:
+
+Assuming you've transferred recon_tool.zip to your Kali machine (e.g., in your Downloads folder or Home directory):
+Bash
+
+unzip recon_tool.zip
+cd recon_tool
+Note: If you manually created the files on Kali, you can skip this step and just navigate to the recon_tool directory you created.
+Install Python Dependencies:
+
+Navigate into the recon_tool directory (if you're not already there):
+Bash
+
+cd recon_tool
+Install all required Python libraries using pip:
+Bash
+
+pip3 install -r requirements.txt
+Troubleshooting: If you encounter errors, especially with scapy or python-nmap, ensure you have the necessary system-level development libraries. Sometimes, installing python3-dev or similar packages helps.
+Bash
+
+sudo apt install python3-dev libnmap-dev -y # libnmap-dev might be needed for python-nmap
+Then try pip3 install -r requirements.txt again.
+Run the Tool:
+
+Now you can execute your reconnaissance tool from the recon_tool directory. Replace example.com with your target domain.
+Bash
+
+python3 main.py example.com --whois --dns --subdomains --active --ports --dirs --vulns
+You can choose which flags to use based on the type of reconnaissance you want to perform. For example, to only do WHOIS and DNS:
+Bash
+
+python3 main.py example.com --whois --dns
+This comprehensive guide should help you get your enhanced reconnaissance tool up and running on Kali Linux for your penetration testing activities!
